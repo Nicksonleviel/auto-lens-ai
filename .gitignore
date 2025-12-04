@@ -20,3 +20,5 @@ yarn-error.log*
 # OS junk
 .DS_Store
 Thumbs.db
+
+api/serviceAccountKey.json
