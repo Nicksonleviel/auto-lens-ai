@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import type { PredictionResult } from "@/app/page"
+import type { PredictionResult } from "@/app/page" // Ensure this import matches your page.tsx export
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { RotateCcw, Gauge, Fuel, Flag, Car, Eye, EyeOff, CheckCircle2, AlertCircle } from "lucide-react"
+import { RotateCcw, Gauge, Fuel, Flag, Car, Eye, EyeOff, CheckCircle2, AlertCircle, AlertTriangle } from "lucide-react"
 
 interface ResultDashboardProps {
   imageUrl: string
@@ -15,17 +15,46 @@ interface ResultDashboardProps {
 export function ResultDashboard({ imageUrl, result, onReset }: ResultDashboardProps) {
   const [showHeatmap, setShowHeatmap] = useState(false)
 
-  const getConfidenceColor = (confidence: number) => {
-    if (confidence >= 80) return "text-green-400"
-    if (confidence >= 50) return "text-yellow-400"
-    return "text-red-400"
+  // --- NEW: Dynamic Confidence Logic ---
+  const getConfidenceLevel = (confidence: number) => {
+    if (confidence >= 90) {
+      return {
+        label: "Excellent Match",
+        text: "AI is extremely confident in this identification.",
+        color: "text-green-400",
+        bgColor: "bg-green-400",
+        icon: CheckCircle2
+      }
+    }
+    if (confidence >= 75) {
+      return {
+        label: "High Confidence",
+        text: "AI is highly confident in this result.",
+        color: "text-emerald-400",
+        bgColor: "bg-emerald-400",
+        icon: CheckCircle2
+      }
+    }
+    if (confidence >= 50) {
+      return {
+        label: "Medium Confidence",
+        text: "Likely match, but check visual details.",
+        color: "text-yellow-400",
+        bgColor: "bg-yellow-400",
+        icon: AlertCircle
+      }
+    }
+    return {
+      label: "Low Confidence",
+      text: "Unsure. Results may be inaccurate.",
+      color: "text-red-400",
+      bgColor: "bg-red-400",
+      icon: AlertTriangle
+    }
   }
 
-  const getConfidenceBg = (confidence: number) => {
-    if (confidence >= 80) return "bg-green-400"
-    if (confidence >= 50) return "bg-yellow-400"
-    return "bg-red-400"
-  }
+  const confLevel = getConfidenceLevel(result.confidence)
+  const StatusIcon = confLevel.icon
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -75,14 +104,6 @@ export function ResultDashboard({ imageUrl, result, onReset }: ResultDashboardPr
                       right: "25%",
                     }}
                   />
-                  <div
-                    className="absolute w-40 h-20 rounded-full opacity-40"
-                    style={{
-                      background: "radial-gradient(ellipse, rgba(234,179,8,0.5) 0%, transparent 60%)",
-                      bottom: "25%",
-                      left: "30%",
-                    }}
-                  />
                 </div>
               )}
             </div>
@@ -100,11 +121,6 @@ export function ResultDashboard({ imageUrl, result, onReset }: ResultDashboardPr
                   </>
                 )}
               </Button>
-              {showHeatmap && (
-                <p className="text-xs text-muted-foreground mt-3 text-center">
-                  Red areas indicate regions the AI focused on most for identification
-                </p>
-              )}
             </CardContent>
           </Card>
 
@@ -114,22 +130,25 @@ export function ResultDashboard({ imageUrl, result, onReset }: ResultDashboardPr
               <CardTitle className="text-sm font-medium text-muted-foreground">Top 3 Predictions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {result.topPredictions.map((pred, index) => (
-                <div key={index} className="space-y-1.5">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className={index === 0 ? "font-medium text-foreground" : "text-muted-foreground"}>
-                      {index + 1}. {pred.name}
-                    </span>
-                    <span className={getConfidenceColor(pred.confidence)}>{pred.confidence}%</span>
-                  </div>
-                  <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-                    <div
-                      className={`h-full rounded-full transition-all duration-500 ${getConfidenceBg(pred.confidence)}`}
-                      style={{ width: `${pred.confidence}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
+              {result.topPredictions.map((pred, index) => {
+                 const predLevel = getConfidenceLevel(pred.confidence)
+                 return (
+                    <div key={index} className="space-y-1.5">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className={index === 0 ? "font-medium text-foreground" : "text-muted-foreground"}>
+                          {index + 1}. {pred.name}
+                        </span>
+                        <span className={predLevel.color}>{pred.confidence.toFixed(2)}%</span>
+                      </div>
+                      <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                        <div
+                          className={`h-full rounded-full transition-all duration-500 ${predLevel.bgColor}`}
+                          style={{ width: `${pred.confidence}%` }}
+                        />
+                      </div>
+                    </div>
+                 )
+              })}
             </CardContent>
           </Card>
         </div>
@@ -137,7 +156,7 @@ export function ResultDashboard({ imageUrl, result, onReset }: ResultDashboardPr
         {/* Right Column - Data */}
         <div className="space-y-4">
           {/* Main Result */}
-          <Card className="border-primary/40 bg-zinc-900/80 shadow-xl shadow-primary/20 ring-1 ring-primary/30">
+          <Card className={`border-primary/40 bg-zinc-900/80 shadow-xl shadow-primary/20 ring-1 ${confLevel.color.replace('text', 'ring')}`}>
             <CardContent className="p-6">
               <div className="flex items-start justify-between mb-4">
                 <div>
@@ -148,87 +167,30 @@ export function ResultDashboard({ imageUrl, result, onReset }: ResultDashboardPr
                   <p className="text-xl text-primary">{result.model}</p>
                 </div>
                 <div className="text-right">
-                  <div className={`text-4xl font-bold font-mono ${getConfidenceColor(result.confidence)}`}>
-                    {result.confidence}%
+                  <div className={`text-4xl font-bold font-mono ${confLevel.color}`}>
+                    {result.confidence.toFixed(2)}%
                   </div>
                   <p className="text-xs text-muted-foreground">Confidence</p>
                 </div>
               </div>
 
-              {/* Confidence indicator */}
-              <div className="flex items-center gap-2 p-3 rounded-lg bg-black/40">
-                {result.confidence >= 80 ? (
-                  <>
-                    <CheckCircle2 className="h-5 w-5 text-green-400" />
-                    <span className="text-sm text-foreground">AI is highly confident in this result</span>
-                  </>
-                ) : (
-                  <>
-                    <AlertCircle className="h-5 w-5 text-yellow-400" />
-                    <span className="text-sm text-foreground">Medium confidence, check other alternatives</span>
-                  </>
-                )}
+              {/* Dynamic Confidence Indicator */}
+              <div className="flex items-center gap-3 p-3 rounded-lg bg-black/40 border border-white/5">
+                <StatusIcon className={`h-5 w-5 ${confLevel.color}`} />
+                <div>
+                    <p className={`text-sm font-medium ${confLevel.color}`}>{confLevel.label}</p>
+                    <p className="text-xs text-muted-foreground">{confLevel.text}</p>
+                </div>
               </div>
             </CardContent>
           </Card>
 
           {/* Specs Grid */}
           <div className="grid grid-cols-2 gap-3">
-            <Card className="border-border bg-zinc-900/80 shadow-lg shadow-primary/10 ring-1 ring-white/10">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/20">
-                    <Gauge className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Horsepower</p>
-                    <p className="font-semibold text-foreground">{result.specs.horsepower}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-zinc-900/80 shadow-lg shadow-primary/10 ring-1 ring-white/10">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/20">
-                    <Car className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Acceleration</p>
-                    <p className="font-semibold text-foreground">{result.specs.acceleration}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-zinc-900/80 shadow-lg shadow-primary/10 ring-1 ring-white/10">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/20">
-                    <Fuel className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Fuel Type</p>
-                    <p className="font-semibold text-foreground">{result.specs.fuelType}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-zinc-900/80 shadow-lg shadow-primary/10 ring-1 ring-white/10">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/20">
-                    <Flag className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Origin</p>
-                    <p className="font-semibold text-foreground">{result.specs.origin}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <SpecItem icon={Gauge} label="Horsepower" value={result.specs.horsepower} />
+            <SpecItem icon={Car} label="Acceleration" value={result.specs.acceleration} />
+            <SpecItem icon={Fuel} label="Fuel Type" value={result.specs.fuelType} />
+            <SpecItem icon={Flag} label="Origin" value={result.specs.origin} />
           </div>
 
           {/* Body Type Badge */}
@@ -254,12 +216,29 @@ export function ResultDashboard({ imageUrl, result, onReset }: ResultDashboardPr
             </h4>
             <p className="text-sm text-muted-foreground leading-relaxed">
               The AI analyzed visual features like the front grille shape, headlight design, and body proportions to
-              identify this vehicle as a <span className="text-foreground font-medium">{result.carName}</span>. Click
-              "Show AI Vision" to see the areas it focused on most.
+              identify this vehicle as a <span className="text-foreground font-medium">{result.carName}</span>.
             </p>
           </div>
         </div>
       </div>
     </div>
   )
+}
+
+function SpecItem({ icon: Icon, label, value }: any) {
+    return (
+        <Card className="border-border bg-zinc-900/80 shadow-lg shadow-primary/10 ring-1 ring-white/10">
+            <CardContent className="p-4">
+            <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/20">
+                <Icon className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                <p className="text-xs text-muted-foreground">{label}</p>
+                <p className="font-semibold text-foreground truncate">{value || "N/A"}</p>
+                </div>
+            </div>
+            </CardContent>
+        </Card>
+    )
 }

@@ -1,170 +1,79 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Search, ArrowLeft } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { db } from "@/lib/firebase"
+import { collection, getDocs } from "firebase/firestore"
+import { Skeleton } from "@/components/ui/skeleton"
 
-const carDatabase = [
-  {
-    name: "BMW M3 Coupe",
-    year: "2012",
-    make: "BMW",
-    origin: "Germany",
-    slug: "bmw-m3-coupe-2012",
-    image: "/bmw-m3-coupe-2012-silver.jpg",
-  },
-  {
-    name: "BMW 335i Coupe",
-    year: "2012",
-    make: "BMW",
-    origin: "Germany",
-    slug: "bmw-335i-coupe-2012",
-    image: "/bmw-335i-coupe-2012-black.jpg",
-  },
-  {
-    name: "Audi R8",
-    year: "2008",
-    make: "Audi",
-    origin: "Germany",
-    slug: "audi-r8-2008",
-    image: "/audi-r8-2008-red.jpg",
-  },
-  {
-    name: "Audi S5 Coupe",
-    year: "2012",
-    make: "Audi",
-    origin: "Germany",
-    slug: "audi-s5-coupe-2012",
-    image: "/audi-s5-coupe-2012-white.jpg",
-  },
-  {
-    name: "Audi TT RS",
-    year: "2012",
-    make: "Audi",
-    origin: "Germany",
-    slug: "audi-tt-rs-2012",
-    image: "/audi-tt-rs-2012-blue.jpg",
-  },
-  {
-    name: "Chevrolet Corvette ZR1",
-    year: "2012",
-    make: "Chevrolet",
-    origin: "USA",
-    slug: "chevrolet-corvette-zr1-2012",
-    image: "/chevrolet-corvette-zr1-2012-yellow.jpg",
-  },
-  {
-    name: "Chevrolet Camaro SS",
-    year: "2010",
-    make: "Chevrolet",
-    origin: "USA",
-    slug: "chevrolet-camaro-ss-2010",
-    image: "/chevrolet-camaro-ss-2010-orange.jpg",
-  },
-  {
-    name: "Ferrari 458 Italia",
-    year: "2012",
-    make: "Ferrari",
-    origin: "Italy",
-    slug: "ferrari-458-italia-2012",
-    image: "/ferrari-458-italia-2012-red.jpg",
-  },
-  {
-    name: "Ferrari California",
-    year: "2012",
-    make: "Ferrari",
-    origin: "Italy",
-    slug: "ferrari-california-2012",
-    image: "/ferrari-california-2012-red-convertible.jpg",
-  },
-  {
-    name: "Porsche 911 Turbo",
-    year: "2012",
-    make: "Porsche",
-    origin: "Germany",
-    slug: "porsche-911-turbo-2012",
-    image: "/porsche-911-turbo-2012-silver.jpg",
-  },
-  {
-    name: "Porsche Panamera",
-    year: "2012",
-    make: "Porsche",
-    origin: "Germany",
-    slug: "porsche-panamera-2012",
-    image: "/porsche-panamera-2012-black.jpg",
-  },
-  {
-    name: "Mercedes-Benz SL63 AMG",
-    year: "2012",
-    make: "Mercedes-Benz",
-    origin: "Germany",
-    slug: "mercedes-benz-sl63-amg-2012",
-    image: "/mercedes-benz-sl63-amg-2012-silver.jpg",
-  },
-  {
-    name: "Lamborghini Gallardo",
-    year: "2012",
-    make: "Lamborghini",
-    origin: "Italy",
-    slug: "lamborghini-gallardo-2012",
-    image: "/lamborghini-gallardo-2012-orange.jpg",
-  },
-  {
-    name: "Ford Mustang GT",
-    year: "2012",
-    make: "Ford",
-    origin: "USA",
-    slug: "ford-mustang-gt-2012",
-    image: "/ford-mustang-gt-2012-blue.jpg",
-  },
-  {
-    name: "Dodge Challenger SRT8",
-    year: "2011",
-    make: "Dodge",
-    origin: "USA",
-    slug: "dodge-challenger-srt8-2011",
-    image: "/dodge-challenger-srt8-2011-black.jpg",
-  },
-  {
-    name: "Nissan GT-R",
-    year: "2012",
-    make: "Nissan",
-    origin: "Japan",
-    slug: "nissan-gt-r-2012",
-    image: "/nissan-gt-r-2012-silver.jpg",
-  },
-  {
-    name: "Toyota Supra",
-    year: "2002",
-    make: "Toyota",
-    origin: "Japan",
-    slug: "toyota-supra-2002",
-    image: "/toyota-supra-2002-orange.jpg",
-  },
-  {
-    name: "Honda NSX",
-    year: "2005",
-    make: "Honda",
-    origin: "Japan",
-    slug: "honda-nsx-2005",
-    image: "/honda-nsx-2005-red.jpg",
-  },
-]
+// Map of car IDs to local images for the demo
+const LOCAL_IMAGE_MAP: Record<string, string> = {
+  "Acura RL Sedan 2012": "/placeholder.jpg", 
+  "Audi R8 Coupe 2012": "/audi-r8-2008-red.jpg",
+  "Audi S5 Coupe 2012": "/audi-s5-coupe-2012-white.jpg",
+  "Audi TT RS Coupe 2012": "/audi-tt-rs-2012-blue.jpg",
+  "BMW M3 Coupe 2012": "/bmw-m3-coupe-2012-silver.jpg",
+  "BMW 335i Coupe 2012": "/bmw-335i-coupe-2012-black.jpg",
+  "Chevrolet Camaro SS 2010": "/chevrolet-camaro-ss-2010-orange.jpg",
+  "Chevrolet Corvette ZR1 2012": "/chevrolet-corvette-zr1-2012-yellow.jpg",
+  "Dodge Challenger SRT8 2011": "/dodge-challenger-srt8-2011-black.jpg",
+  "Ferrari 458 Italia Coupe 2012": "/ferrari-458-italia-2012-red.jpg",
+  "Ferrari California Convertible 2012": "/ferrari-california-2012-red-convertible.jpg",
+  "Ford Mustang GT Coupe 2012": "/ford-mustang-gt-2012-blue.jpg",
+  "Honda NSX Coupe 2005": "/honda-nsx-2005-red.jpg", 
+  "Lamborghini Gallardo Coupe 2012": "/lamborghini-gallardo-2012-orange.jpg",
+  "Mercedes-Benz SL63 AMG Convertible 2012": "/mercedes-benz-sl63-amg-2012-silver.jpg",
+  "Nissan GT-R Coupe 2012": "/nissan-gt-r-2012-silver.jpg",
+  "Porsche 911 Turbo Coupe 2012": "/porsche-911-turbo-2012-silver.jpg",
+  "Porsche Panamera Sedan 2012": "/porsche-panamera-2012-black.jpg",
+  "Toyota Supra Coupe 2002": "/toyota-supra-2002-orange.jpg"
+}
 
 const regions = ["All", "USA", "Germany", "Italy", "Japan"]
 
 export default function BrowsePage() {
   const [query, setQuery] = useState("")
   const [selectedRegion, setSelectedRegion] = useState("All")
+  const [cars, setCars] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const filteredCars = carDatabase.filter((car) => {
+  // 1. Fetch Cars from Firebase on Load
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "cars"))
+        const carList = querySnapshot.docs.map(doc => doc.data())
+        setCars(carList)
+      } catch (error) {
+        console.error("Error fetching cars:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCars()
+  }, [])
+
+  // 2. Filter Logic
+  const filteredCars = cars.filter((car) => {
+    // Basic null check for properties
+    const carName = car.name || ""
+    const carMake = car.make || ""
+    const carYear = car.year ? car.year.toString() : ""
+    
+    // Note: Origin is inside 'specs' in your database structure
+    const carOrigin = car.specs?.origin || "Unknown"
+
     const matchesQuery =
-      car.name.toLowerCase().includes(query.toLowerCase()) ||
-      car.make.toLowerCase().includes(query.toLowerCase()) ||
-      car.year.includes(query)
-    const matchesRegion = selectedRegion === "All" || car.origin === selectedRegion
+      carName.toLowerCase().includes(query.toLowerCase()) ||
+      carMake.toLowerCase().includes(query.toLowerCase()) ||
+      carYear.includes(query)
+      
+    const matchesRegion = selectedRegion === "All" || carOrigin === selectedRegion
+    
     return matchesQuery && matchesRegion
   })
 
@@ -221,32 +130,47 @@ export default function BrowsePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredCars.map((car) => (
-            <Link
-              key={car.slug}
-              href={`/car/${car.slug}`}
-              className="group bg-zinc-900/80 border border-border rounded-xl overflow-hidden shadow-lg shadow-primary/10 ring-1 ring-white/10 hover:ring-primary/30 hover:shadow-xl hover:shadow-primary/20 transition-all"
-            >
-              <div className="aspect-[3/2] overflow-hidden bg-black/40">
-                <img
-                  src={car.image || "/placeholder.svg"}
-                  alt={car.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{car.name}</h3>
-                <div className="flex items-center justify-between mt-2">
-                  <p className="text-sm text-muted-foreground">{car.year}</p>
-                  <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
-                    {car.origin}
-                  </span>
+        {/* Loading State */}
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => (
+              <Skeleton key={i} className="h-64 rounded-xl" />
+            ))}
+          </div>
+        ) : (
+          /* Car Grid */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredCars.map((car) => (
+              <Link
+                key={car.id}
+                // FIX: Use encodeURIComponent for IDs with special chars
+                href={`/car/${encodeURIComponent(car.id)}`}
+                className="group bg-zinc-900/80 border border-border rounded-xl overflow-hidden shadow-lg shadow-primary/10 ring-1 ring-white/10 hover:ring-primary/30 hover:shadow-xl hover:shadow-primary/20 transition-all"
+              >
+                <div className="aspect-3/2 overflow-hidden bg-black/40 flex items-center justify-center">
+                  <img
+                    // FIX: Use the map for images, fallback to placeholder
+                    src={LOCAL_IMAGE_MAP[car.id] || "/placeholder.svg"}
+                    alt={car.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/placeholder.svg"
+                    }}
+                  />
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1">{car.name}</h3>
+                  <div className="flex items-center justify-between mt-2">
+                    <p className="text-sm text-muted-foreground">{car.year}</p>
+                    <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+                      {car.specs?.origin || "Imported"}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </main>
   )

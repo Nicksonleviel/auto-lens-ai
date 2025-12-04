@@ -1,0 +1,197 @@
+Car Model,Horsepower,Acceleration (0-60 mph),Fuel Type,Origin,Body Type
+AM General Hummer SUV 2000,195 hp,~18.0 sec,Diesel,USA,SUV
+Acura RL Sedan 2012,300 hp,~6.0 sec,Gasoline,Japan,Sedan
+Acura TL Sedan 2012,280 hp,6.2 sec,Gasoline,Japan,Sedan
+Acura TL Type-S 2008,286 hp,5.5 sec,Gasoline,Japan,Sedan
+Acura TSX Sedan 2012,201 hp,7.8 sec,Gasoline,Japan,Sedan
+Acura Integra Type R 2001,195 hp,6.2 sec,Gasoline,Japan,Coupe (Liftback)
+Acura ZDX Hatchback 2012,300 hp,7.3 sec,Gasoline,Japan,SUV/Hatchback
+Aston Martin V8 Vantage Convertible 2012,420 hp,4.7 sec,Gasoline,UK,Convertible
+Aston Martin V8 Vantage Coupe 2012,420 hp,4.7 sec,Gasoline,UK,Coupe
+Aston Martin Virage Convertible 2012,490 hp,4.6 sec,Gasoline,UK,Convertible
+Aston Martin Virage Coupe 2012,490 hp,4.6 sec,Gasoline,UK,Coupe
+Audi RS 4 Convertible 2008,420 hp,4.8 sec,Gasoline,Germany,Convertible
+Audi A5 Coupe 2012,211 hp,6.2 sec,Gasoline,Germany,Coupe
+Audi TTS Coupe 2012,265 hp,4.9 sec,Gasoline,Germany,Coupe
+Audi R8 Coupe 2012,430 hp (V8),4.4 sec,Gasoline,Germany,Coupe
+Audi V8 Sedan 1994,276 hp,~7.6 sec,Gasoline,Germany,Sedan
+Audi 100 Sedan 1994,172 hp,9.9 sec,Gasoline,Germany,Sedan
+Audi 100 Wagon 1994,172 hp,10.0 sec,Gasoline,Germany,Wagon
+Audi TT Hatchback 2011,211 hp,5.3 sec,Gasoline,Germany,Coupe
+Audi S6 Sedan 2011,435 hp,5.1 sec,Gasoline,Germany,Sedan
+Audi S5 Convertible 2012,333 hp,5.1 sec,Gasoline,Germany,Convertible
+Audi S5 Coupe 2012,354 hp,4.9 sec,Gasoline,Germany,Coupe
+Audi S4 Sedan 2012,333 hp,4.9 sec,Gasoline,Germany,Sedan
+Audi S4 Sedan 2007,340 hp,5.3 sec,Gasoline,Germany,Sedan
+Audi TT RS Coupe 2012,360 hp,4.1 sec,Gasoline,Germany,Coupe
+BMW ActiveHybrid 5 Sedan 2012,335 hp,5.7 sec,Hybrid (Gas/Elec),Germany,Sedan
+BMW 1 Series Convertible 2012,230 hp (128i),6.4 sec,Gasoline,Germany,Convertible
+BMW 1 Series Coupe 2012,230 – 300 hp,5.1s – 6.4s,Gasoline,Germany,Coupe
+BMW 3 Series Sedan 2012,240 – 300 hp,5.2s – 5.9s,Gasoline,Germany,Sedan
+BMW 3 Series Wagon 2012,230 hp,~6.7s,Gasoline,Germany,Wagon
+BMW 6 Series Convertible 2007,360 hp,5.6s,Gasoline,Germany,Convertible
+BMW X5 SUV 2007,260 – 350 hp,6.4s – 7.8s,Gasoline,Germany (USA Assembly),SUV
+BMW X6 SUV 2012,300 – 400 hp,5.2s – 6.3s,Gasoline,Germany (USA Assembly),SUV
+BMW M3 Coupe 2012,414 hp,4.7s,Gasoline,Germany,Coupe
+BMW M5 Sedan 2010,500 hp,4.5s,Gasoline,Germany,Sedan
+BMW M6 Convertible 2010,500 hp,4.5s,Gasoline,Germany,Convertible
+BMW X3 SUV 2012,240 – 300 hp,5.5s – 6.7s,Gasoline,Germany (USA Assembly),SUV
+BMW Z4 Convertible 2012,240 – 335 hp,4.8s – 5.6s,Gasoline,Germany,Convertible
+Bentley Continental Supersports Conv. Convertible 2012,621 hp,3.9s,Gasoline,United Kingdom,Convertible
+Bentley Arnage Sedan 2009,450 – 500 hp,5.2s – 5.5s,Gasoline,United Kingdom,Sedan
+Bentley Mulsanne Sedan 2011,505 hp,5.1s,Gasoline,United Kingdom,Sedan
+Bentley Continental GT Coupe 2012,567 hp,4.4s,Gasoline,United Kingdom,Coupe
+Bentley Continental GT Coupe 2007,552 hp,4.7s,Gasoline,United Kingdom,Coupe
+Bentley Continental Flying Spur Sedan 2007,552 hp,4.9s,Gasoline,United Kingdom,Sedan
+Bugatti Veyron 16.4 Convertible 2009,1001 hp,2.5s,Gasoline,France,Convertible
+Bugatti Veyron 16.4 Coupe 2009,1001 hp,2.5s,Gasoline,France,Coupe
+Buick Regal GS 2012,270 hp,6.2s,Gasoline,USA (Canada Assembly),Sedan
+Buick Rainier SUV 2007,291 – 302 hp,7.0s – 7.6s,Gasoline,USA,SUV
+Buick Verano Sedan 2012,180 hp,8.2s,Gasoline,USA,Sedan
+Buick Enclave SUV 2012,288 hp,6.9s,Gasoline,USA,SUV
+Cadillac CTS-V Sedan 2012,556 hp,3.9s,Gasoline,USA,Sedan
+Cadillac SRX SUV 2012,308 hp,7.6s,Gasoline,USA (Mexico Assembly),SUV
+Cadillac Escalade EXT Crew Cab 2007,403 hp,8.4s,Gasoline,USA (Mexico Assembly),Pickup/SUV
+Chevrolet Silverado 1500 Hybrid Crew Cab 2012,332 hp (379 hp combined),~9.2 sec,Hybrid (Gas/Electric),USA,Pickup (Crew Cab)
+Chevrolet Corvette Convertible 2012,430 hp (6.2L V8),4.2 sec,Gasoline,USA,Convertible
+Chevrolet Corvette ZR1 2012,638 hp (Supercharged),3.4 sec,Gasoline,USA,Coupe
+Chevrolet Corvette Ron Fellows Edition Z06 2007,505 hp (7.0L V8),3.7 sec,Gasoline,USA,Coupe
+Chevrolet Traverse SUV 2012,281 hp,7.9 sec,Gasoline,USA,SUV
+Chevrolet Camaro Convertible 2012,323 hp (V6 Base)*,6.2 sec,Gasoline,USA,Convertible
+Chevrolet HHR SS 2010,260 hp (Turbo),6.3 sec,Gasoline,USA,Wagon / Retro Hatch
+Chevrolet Impala Sedan 2007,211 hp (3.5L V6),8.4 sec,Gasoline,USA,Sedan
+Chevrolet Tahoe Hybrid SUV 2012,332 hp (Combined),8.2 sec,Hybrid (Gas/Electric),USA,SUV
+Chevrolet Sonic Sedan 2012,138 hp (1.4L Turbo),8.2 sec,Gasoline,USA,Sedan (Subcompact)
+Chevrolet Express Cargo Van 2007,285 hp (4.8L V8),~9.5 sec (Est.),Gasoline,USA,Cargo Van
+Chevrolet Avalanche Crew Cab 2012,320 hp,7.0 sec,Gasoline,USA,SUT (Pickup)
+Chevrolet Cobalt SS 2010,260 hp (Turbo),5.7 sec,Gasoline,USA,Coupe
+Chevrolet Malibu Hybrid Sedan 2010,164 hp,9.1 sec,Hybrid (Mild),USA,Sedan
+Chevrolet TrailBlazer SS 2009,390 hp (6.0L V8),5.5 sec,Gasoline,USA,SUV
+Chevrolet Silverado 2500HD Regular Cab 2012,360 hp (6.0L Gas)**,~7.8 sec,Gasoline,USA,Pickup (Heavy Duty)
+Chevrolet Silverado 1500 Classic Extended Cab 2007,295 hp (5.3L V8),7.5 sec,Gasoline,USA,Pickup (Extended)
+Chevrolet Express Van 2007,295 hp (5.3L V3),~9.0 sec (Est.),Gasoline,USA,Passenger Van
+Chevrolet Monte Carlo Coupe 2007,211 hp (3.5L V6),8.4 sec,Gasoline,USA,Coupe
+Chevrolet Malibu Sedan 2007,217 hp (3.5L V6),7.9 sec,Gasoline,USA,Sedan
+Chevrolet Silverado 1500 Extended Cab 2012,315 hp (5.3L V8),7.4 sec,Gasoline,USA,Pickup (Extended)
+Chevrolet Silverado 1500 Regular Cab 2012,195 hp (4.3L V6)*,8.3 sec,Gasoline,USA,Pickup (Regular)
+Chrysler Aspen SUV 2009,376 hp (5.7L V8),7.2 sec,Gasoline,USA,SUV
+Chrysler Sebring Convertible 2010,235 hp (3.5L V6),8.5 sec,Gasoline,USA,Convertible
+Chrysler Town and Country Minivan 2012,283 hp (3.6L V6),7.7 sec,Gasoline,USA,Minivan
+Chrysler 300 SRT-8 2010,425 hp (6.1L V8),4.9 sec,Gasoline,USA,Sedan
+Chrysler Crossfire Convertible 2008,215 hp (3.2L V6),6.5 sec,Gasoline,USA,Convertible
+Chrysler PT Cruiser Convertible 2008,150 hp (2.4L I4),10.3 sec,Gasoline,USA,Convertible
+Daewoo Nubira Wagon 2002,129 hp (2.0L I4),9.5 sec,Gasoline,South Korea,Wagon
+Dodge Caliber Wagon 2012,158 hp (2.0L I4),9.5 sec,Gasoline,USA,Hatchback / Wagon
+Dodge Caliber Wagon 2007,172 hp (2.4L I4 R/T),9.1 sec,Gasoline,USA,Hatchback / Wagon
+Dodge Caravan Minivan 1997,150 hp (3.0L V6),10.8 sec,Gasoline,USA,Minivan
+Dodge Ram Pickup 3500 Crew Cab 2010,350 hp (6.7L Diesel),~8.7 sec,Diesel,USA,Pickup (Heavy Duty)
+Dodge Ram Pickup 3500 Quad Cab 2009,350 hp (6.7L Diesel),~8.5 sec,Diesel,USA,Pickup (Heavy Duty)
+Dodge Sprinter Cargo Van 2009,154 hp (3.0L V6),~12.5 sec,Diesel,USA**,Cargo Van
+Dodge Journey SUV 2012,283 hp (3.6L V6),7.5 sec,Gasoline,USA,SUV / Crossover
+Dodge Dakota Crew Cab 2010,302 hp (4.7L V8),7.6 sec,Gasoline,USA,Pickup
+Dodge Dakota Club Cab 2007,260 hp (4.7L V8),8.0 sec,Gasoline,USA,Pickup
+Dodge Magnum Wagon 2008,250 hp (3.5L V6),8.5 sec,Gasoline,USA,Wagon
+Dodge Challenger SRT8 2011,470 hp (6.4L V8),4.5 sec,Gasoline,USA,Coupe
+Dodge Durango SUV 2012,290 hp (3.6L V6),8.0 sec,Gasoline,USA,SUV
+Dodge Durango SUV 2007,335 hp (5.7L V8),7.6 sec,Gasoline,USA,SUV
+Dodge Charger Sedan 2012,292 hp (3.6L V6),6.5 sec,Gasoline,USA,Sedan
+Dodge Charger SRT-8 2009,425 hp (6.1L V8),4.8 sec,Gasoline,USA,Sedan
+Eagle Talon Hatchback 1998,210 hp (Turbo),6.6 sec,Gasoline,USA***,Coupe / Hatchback
+FIAT 500 Abarth 2012,160 hp (1.4L Turbo),6.9 sec,Gasoline,Italy,Hatchback
+FIAT 500 Convertible 2012,101 hp (1.4L),9.6 sec,Gasoline,Italy,Convertible
+Ferrari FF Coupe 2012,651 hp (V12),3.7 sec,Gasoline,Italy,Shooting Brake / Coupe
+Ferrari California Convertible 2012,460 hp (V8),3.9 sec,Gasoline,Italy,Convertible (Hardtop)
+Ferrari 458 Italia Convertible 2012,562 hp (V8),3.4 sec,Gasoline,Italy,Convertible (Hardtop)
+Ferrari 458 Italia Coupe 2012,562 hp (V8),3.3 sec,Gasoline,Italy,Coupe
+Fisker Karma Sedan 2012,403 hp (Combined),6.3 sec,Hybrid (Plug-in),USA,Sedan
+Ford F-450 Super Duty Crew Cab 2012,400 hp (6.7L Diesel),~9.0 sec (Est.),Diesel,USA,Pickup (Crew Cab)
+Ford Mustang Convertible 2007,210 hp (4.0L V6)*,7.3 sec,Gasoline,USA,Convertible
+Ford Freestar Minivan 2007,201 hp (4.2L V6),10.5 sec,Gasoline,USA,Minivan
+Ford Expedition EL SUV 2009,310 hp (5.4L V8),8.9 sec,Gasoline,USA,SUV
+Ford Edge SUV 2012,285 hp (3.5L V6),7.5 sec,Gasoline,USA,SUV
+Ford Ranger SuperCab 2011,207 hp (4.0L V6),8.8 sec,Gasoline,USA,Pickup (Extended)
+Ford GT Coupe 2006,550 hp (Supercharged),3.3 sec,Gasoline,USA,Coupe
+Ford F-150 Regular Cab 2012,302 hp (3.7L V6),6.5 sec,Gasoline,USA,Pickup (Regular)
+Ford F-150 Regular Cab 2007,202 hp (4.2L V6),10.5 sec,Gasoline,USA,Pickup (Regular)
+Ford Focus Sedan 2007,136 hp (2.0L),9.7 sec,Gasoline,USA,Sedan
+Ford E-Series Wagon Van 2012,225 hp (4.6L V8),~10.0 sec (Est.),Gasoline,USA,Passenger Van
+Ford Fiesta Sedan 2012,120 hp (1.6L),9.9 sec,Gasoline,USA,Sedan
+GMC Terrain SUV 2012,182 hp (2.4L I4),9.2 sec,Gasoline,USA,SUV
+GMC Savana Van 2012,195 hp (4.3L V6),~10.0 sec (Est.),Gasoline,USA,Van
+GMC Yukon Hybrid SUV 2012,332 hp (Combined),8.2 sec,Hybrid (Gas/Electric),USA,SUV
+GMC Acadia SUV 2012,288 hp (3.6L V6),7.8 sec,Gasoline,USA,SUV
+GMC Canyon Extended Cab 2012,185 hp (2.9L I4),10.2 sec,Gasoline,USA,Pickup (Extended)
+Geo Metro Convertible 1993,55 hp (1.0L 3-cyl),13.7 sec,Gasoline,USA,Convertible
+HUMMER H3T Crew Cab 2010,239 hp (3.7L I5),10.5 sec,Gasoline,USA,Pickup (Crew Cab)
+HUMMER H2 SUT Crew Cab 2009,393 hp (6.2L V8),8.2 sec,Gasoline,USA,SUT (Pickup)
+Honda Odyssey Minivan 2012,248 hp (3.5L V6),7.4 sec,Gasoline,Japan,Minivan
+Honda Odyssey Minivan 2007,244 hp (3.5L V6),8.6 sec,Gasoline,Japan,Minivan
+Honda Accord Coupe 2012,190 hp (2.4L I4)*,8.5 sec,Gasoline,Japan,Coupe
+Honda Accord Sedan 2012,177 hp (2.4L I4),9.1 sec,Gasoline,Japan,Sedan
+Hyundai Veloster Hatchback 2012,138 hp (1.6L),9.8 sec,Gasoline,South Korea,Hatchback (3-Door)
+Hyundai Santa Fe SUV 2012,276 hp (3.5L V6),8.0 sec,Gasoline,South Korea,SUV
+Hyundai Tucson SUV 2012,165 hp (2.0L I4),9.6 sec,Gasoline,South Korea,SUV
+Hyundai Veracruz SUV 2012,260 hp (3.8L V6),7.5 sec,Gasoline,South Korea,SUV
+Hyundai Sonata Hybrid Sedan 2012,206 hp (Combined),9.2 sec,Hybrid (Gas/Electric),South Korea,Sedan
+Hyundai Elantra Sedan 2007,138 hp (2.0L I4),8.4 sec,Gasoline,South Korea,Sedan
+Hyundai Accent Sedan 2012,138 hp (1.6L I4),10.3 sec,Gasoline,South Korea,Sedan
+Hyundai Genesis Sedan 2012,333 hp (3.8L V6),5.9 sec,Gasoline,South Korea,Sedan
+Hyundai Sonata Sedan 2012,198 hp (2.4L I4),7.9 sec,Gasoline,South Korea,Sedan
+Hyundai Elantra Touring Hatchback 2012,138 hp (2.0L I4),8.7 sec,Gasoline,South Korea,Wagon / Hatchback
+Hyundai Azera Sedan 2012,293 hp (3.3L V6),7.4 sec,Gasoline,South Korea,Sedan
+Infiniti G Coupe IPL 2012,348 hp (3.7L V6),5.4 sec,Gasoline,Japan,Coupe
+Infiniti QX56 SUV 2011,400 hp (5.6L V8),6.8 sec,Gasoline,Japan,SUV
+Isuzu Ascender SUV 2008,285 hp (4.2L I6),8.5 sec,Gasoline,Japan,SUV
+Jaguar XK XKR 2012,510 hp (Supercharged),4.6 sec,Gasoline,UK,Coupe
+Jeep Patriot SUV 2012,158 hp (2.0L I4),10.1 sec,Gasoline,USA,SUV
+Jeep Wrangler SUV 2012,285 hp (3.6L V6),7.7 sec,Gasoline,USA,SUV
+Jeep Liberty SUV 2012,210 hp (3.7L V6),8.7 sec,Gasoline,USA,SUV
+Jeep Grand Cherokee SUV 2012,290 hp (3.6L V6),9.0 sec,Gasoline,USA,SUV
+Jeep Compass SUV 2012,158 hp (2.0L I4),10.0 sec,Gasoline,USA,SUV
+Lamborghini Reventon Coupe 2008,641 hp (6.5L V12),3.4 sec,Gasoline,Italy,Coupe
+Lamborghini Aventador Coupe 2012,691 hp (6.5L V12),2.9 sec,Gasoline,Italy,Coupe
+Lamborghini Gallardo LP 570-4 Superleggera 2012,562 hp (5.2L V10),3.4 sec,Gasoline,Italy,Coupe
+Lamborghini Diablo Coupe 2001,550 hp (6.0L V12),3.9 sec,Gasoline,Italy,Coupe
+Land Rover Range Rover SUV 2012,375 hp (5.0L V8),7.2 sec,Gasoline,UK,SUV
+Land Rover LR2 SUV 2012,230 hp (3.2L I6),8.4 sec,Gasoline,UK,SUV
+Lincoln Town Car Sedan 2011,239 hp (4.6L V8),9.2 sec,Gasoline,USA,Sedan
+MINI Cooper Roadster Convertible 2012,121 hp (1.6L I4),8.7 sec,Gasoline,UK,Convertible
+Maybach Landaulet Convertible 2012,620 hp (6.0L V12),5.2 sec,Gasoline,Germany,Semi-Convertible (Landaulet)
+Mazda Tribute SUV 2011,171 hp (2.5L I4)*,9.0 sec,Gasoline,Japan,SUV
+McLaren MP4-12C Coupe 2012,592 hp (3.8L V8),3.2 sec,Gasoline,UK,Coupe
+Mercedes-Benz 300-Class Convertible 1993,217 hp (3.2L I6),8.6 sec,Gasoline,Germany,Convertible
+Mercedes-Benz C-Class Sedan 2012,201 hp (1.8L Turbo)*,7.1 sec,Gasoline,Germany,Sedan
+Mercedes-Benz SL-Class Coupe 2009,382 hp (5.5L V8),5.3 sec,Gasoline,Germany,Convertible (Hardtop)
+Mercedes-Benz E-Class Sedan 2012,302 hp (3.5L V6),6.5 sec,Gasoline,Germany,Sedan
+Mercedes-Benz S-Class Sedan 2012,429 hp (4.7L V8 TT),4.8 sec,Gasoline,Germany,Sedan
+Mercedes-Benz Sprinter Van 2012,188 hp (3.0L Diesel),~11.5 sec (Est.),Diesel,Germany,Van
+Mitsubishi Lancer Sedan 2012,148 hp (2.0L I4)*,8.0 sec,Gasoline,Japan,Sedan
+Nissan Leaf Hatchback 2012,107 hp (Electric),7.0 sec,Electric,Japan,Hatchback
+Nissan NV Passenger Van 2012,261 hp (4.0L V6),11.2 sec,Gasoline,Japan,Van
+Nissan Juke Hatchback 2012,188 hp (1.6L Turbo),7.3 sec,Gasoline,Japan,Crossover/Hatch
+Nissan 240SX Coupe 1998,155 hp (2.4L I4),7.5 sec,Gasoline,Japan,Coupe
+Plymouth Neon Coupe 1999,132 hp (2.0L I4),8.7 sec,Gasoline,USA,Coupe
+Porsche Panamera Sedan 2012,300 hp (3.6L V6),5.8 sec,Gasoline,Germany,Sedan (Liftback)
+Ram C/V Cargo Van Minivan 2012,283 hp (3.6L V6),~8.3 sec,Gasoline,USA,Minivan (Cargo)
+Rolls-Royce Phantom Drophead Coupe Convertible 2012,453 hp (6.7L V12),5.6 sec,Gasoline,UK,Convertible
+Rolls-Royce Ghost Sedan 2012,563 hp (6.6L V12),4.8 sec,Gasoline,UK,Sedan
+Rolls-Royce Phantom Sedan 2012,453 hp (6.7L V12),5.7 sec,Gasoline,UK,Sedan
+Scion xD Hatchback 2012,128 hp (1.8L I4),8.2 sec,Gasoline,Japan,Hatchback
+Spyker C8 Convertible 2009,400 hp (4.2L V8),4.5 sec,Gasoline,Netherlands,Convertible
+Spyker C8 Coupe 2009,400 hp (4.2L V8),4.5 sec,Gasoline,Netherlands,Coupe
+Suzuki Aerio Sedan 2007,155 hp (2.3L I4),~8.5 sec,Gasoline,Japan,Sedan
+Suzuki Kizashi Sedan 2012,180 hp (2.4L I4),8.3 sec,Gasoline,Japan,Sedan
+Suzuki SX4 Hatchback 2012,150 hp (2.0L I4),9.1 sec,Gasoline,Japan,Hatchback
+Suzuki SX4 Sedan 2012,150 hp (2.0L I4),9.1 sec,Gasoline,Japan,Sedan
+Tesla Model S Sedan 2012,416 hp (85kWh Perf),4.4 sec,Electric,USA,Sedan (Liftback)
+Toyota Sequoia SUV 2012,381 hp (5.7L V8),6.7 sec,Gasoline,Japan,SUV
+Toyota Camry Sedan 2012,178 hp (2.5L I4),8.6 sec,Gasoline,Japan,Sedan
+Toyota Corolla Sedan 2012,132 hp (1.8L I4),9.1 sec,Gasoline,Japan,Sedan
+Toyota 4Runner SUV 2012,270 hp (4.0L V6),6.8 sec,Gasoline,Japan,SUV
+Volkswagen Golf Hatchback 2012,170 hp (2.5L I5),7.8 sec,Gasoline,Germany,Hatchback
+Volkswagen Golf Hatchback 1991,105 hp (1.8L 8v),~10.0 sec,Gasoline,Germany,Hatchback
+Volkswagen Beetle Hatchback 2012,170 hp (2.5L I5),8.9 sec,Gasoline,Germany,Hatchback
+Volvo C30 Hatchback 2012,227 hp (2.5L Turbo),6.2 sec,Gasoline,Sweden,Hatchback
+Volvo 240 Sedan 1993,114 hp (2.3L I4),14.3 sec,Gasoline,Sweden,Sedan
+Volvo XC90 SUV 2007,235 hp (3.2L I6),8.7 sec,Gasoline,Sweden,SUV
+smart fortwo Convertible 2012,70 hp (1.0L 3-cyl),12.8 sec,Gasoline,Germany,Convertible

@@ -40,7 +40,10 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
     }
   }, [])
 
+const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const processFile = (file: File) => {
+    setSelectedFile(file); // <--- Store the file!
     const reader = new FileReader()
     reader.onload = (e) => {
       const result = e.target?.result as string
@@ -50,8 +53,12 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
   }
 
   const handleAnalyze = () => {
-    if (preview) {
-      onImageUpload(preview)
+    // Pass the FILE, or if preview is base64, pass that. 
+    // Ideally, change the interface of onImageUpload to accept File | string
+    if (selectedFile) {
+        onImageUpload(selectedFile as any); 
+    } else if (preview) {
+        onImageUpload(preview);
     }
   }
 
