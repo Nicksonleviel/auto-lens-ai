@@ -8,26 +8,26 @@ import os
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# CONFIGURATION
+# CONFIGURATION 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "api", "cars_effnetv2b0_best.keras")
 CLASS_NAMES_PATH = os.path.join(BASE_DIR, "api", "class_names.json")
 FIREBASE_KEY_PATH = os.path.join(BASE_DIR, "serviceAccountKey.json")
-LOGO_PATH = os.path.join(BASE_DIR, ".logo_otosearch.png")
+LOGO_PATH = os.path.join(BASE_DIR, "./logo_otosearch.png")
 IMG_SIZE = 224
 
-# STREAMLIT PAGE CONFIGURATION
+# Page Config
 st.set_page_config(
     page_title="Otosearch",
-    page_icon=".logo_otosearch.png",
+    page_icon="./logo_otosearch.png",
     layout="centered"
 )
 
-# FIREBASE SETUP
+# FIREBASE SETUP 
 @st.cache_resource
 def initialize_firebase():
     if not os.path.exists(FIREBASE_KEY_PATH):
-        st.warning(f"'serviceAccountKey.json' not found. Specs will not be fetched from DB.")
+        st.warning(f"⚠️ 'serviceAccountKey.json' not found. Spec     s will not be fetched from DB.")
         return None
     try:
         if not firebase_admin._apps:
@@ -35,7 +35,7 @@ def initialize_firebase():
             firebase_admin.initialize_app(cred)
         return firestore.client()
     except Exception as e:
-        st.error(f"Error connecting to Firebase: {e}")
+        st.error(f"❌ Error connecting to Firebase: {e}")
         return None
 
 db = initialize_firebase()
@@ -44,25 +44,33 @@ db = initialize_firebase()
 @st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_PATH):
-        st.error(f"Model not found at: {MODEL_PATH}")
+        st.error(f"❌ Model not found at: {MODEL_PATH}")
         return None
     try:
+        # Load model
         model = keras.models.load_model(MODEL_PATH)
+        
+        # Warm up model
+        dummy_input = np.zeros((1, 224, 224, 3))
+        model.predict(dummy_input, verbose=0) 
+        print("✅ Model warmed up and ready!")
+        
         return model
     except Exception as e:
-        st.error(f"Error loading model: {e}")
+        st.error(f"❌ Error loading model: {e}")
         return None
 
 @st.cache_data
 def load_class_names():
     if not os.path.exists(CLASS_NAMES_PATH):
-        st.error(f"Class names file not found at: {CLASS_NAMES_PATH}")
+        st.error(f"❌ Class names file not found at: {CLASS_NAMES_PATH}")
         return None
     with open(CLASS_NAMES_PATH, 'r') as f:
         return json.load(f)
 
-model = load_model()
-class_names = load_class_names()
+with st.spinner("Loading AI Models..."):
+    model = load_model()
+    class_names = load_class_names()
 
 # HELPER FUNCTIONS
 def prepare_image(image, target_size):
@@ -105,7 +113,6 @@ def fetch_car_details(car_name_raw):
         except Exception as e:
             print(f"DB Error: {e}")
 
-    print(f"Car not found in DB: {db_id}. Using fallback.")
     parts = db_id.split(" ")
     fallback_year = "----"
     if len(parts) > 1 and parts[-1].isdigit():
@@ -121,15 +128,14 @@ def fetch_car_details(car_name_raw):
     })
     return car_data, False
 
-# MAIN UI
-
-# Logo and Title
+# MAIN UI 
+# Display Logo and New Title
 col1, col2 = st.columns([1, 4])
 with col1:
     if os.path.exists(LOGO_PATH):
         st.image(LOGO_PATH, width=224)
     else:
-        st.write("🚗") # Placeholder
+        st.write("🚗") 
 with col2:
     st.markdown("""
         <h1 style='margin-bottom: 0px; padding-top: 10px;'>Otosearch</h1>
@@ -143,7 +149,8 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 
 if uploaded_file is not None and model is not None and class_names is not None:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_container_width=True)
+    
+    st.image(image, caption="Uploaded Image", width="stretch")
     
     if st.button("🔍 Analyze Car", type="primary"):
         with st.spinner("Analyzing visual features..."):
