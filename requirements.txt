@@ -3,6 +3,3 @@ tensorflow
 pillow
 numpy
 firebase-admin
-flask
-flask-cors
-opencv-python-headless

@@ -8,7 +8,7 @@ import os
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# --- 1. CONFIGURATION ---
+# CONFIGURATION
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "api", "cars_effnetv2b0_best.keras")
 CLASS_NAMES_PATH = os.path.join(BASE_DIR, "api", "class_names.json")
@@ -16,18 +16,18 @@ FIREBASE_KEY_PATH = os.path.join(BASE_DIR, "serviceAccountKey.json")
 LOGO_PATH = os.path.join(BASE_DIR, ".logo_otosearch.png")
 IMG_SIZE = 224
 
-# Page Config - Changed title to Otosearch
+# STREAMLIT PAGE CONFIGURATION
 st.set_page_config(
     page_title="Otosearch",
     page_icon=".logo_otosearch.png",
     layout="centered"
 )
 
-# --- 2. FIREBASE SETUP ---
+# FIREBASE SETUP
 @st.cache_resource
 def initialize_firebase():
     if not os.path.exists(FIREBASE_KEY_PATH):
-        st.warning(f"⚠️ 'serviceAccountKey.json' not found. Specs will not be fetched from DB.")
+        st.warning(f"'serviceAccountKey.json' not found. Specs will not be fetched from DB.")
         return None
     try:
         if not firebase_admin._apps:
@@ -35,28 +35,28 @@ def initialize_firebase():
             firebase_admin.initialize_app(cred)
         return firestore.client()
     except Exception as e:
-        st.error(f"❌ Error connecting to Firebase: {e}")
+        st.error(f"Error connecting to Firebase: {e}")
         return None
 
 db = initialize_firebase()
 
-# --- 3. LOAD MODEL & CLASS NAMES ---
+# LOAD MODEL & CLASS NAMES
 @st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_PATH):
-        st.error(f"❌ Model not found at: {MODEL_PATH}")
+        st.error(f"Model not found at: {MODEL_PATH}")
         return None
     try:
         model = keras.models.load_model(MODEL_PATH)
         return model
     except Exception as e:
-        st.error(f"❌ Error loading model: {e}")
+        st.error(f"Error loading model: {e}")
         return None
 
 @st.cache_data
 def load_class_names():
     if not os.path.exists(CLASS_NAMES_PATH):
-        st.error(f"❌ Class names file not found at: {CLASS_NAMES_PATH}")
+        st.error(f"Class names file not found at: {CLASS_NAMES_PATH}")
         return None
     with open(CLASS_NAMES_PATH, 'r') as f:
         return json.load(f)
@@ -64,7 +64,7 @@ def load_class_names():
 model = load_model()
 class_names = load_class_names()
 
-# --- 4. HELPER FUNCTIONS ---
+# HELPER FUNCTIONS
 def prepare_image(image, target_size):
     if image.mode != "RGB":
         image = image.convert("RGB")
@@ -121,23 +121,22 @@ def fetch_car_details(car_name_raw):
     })
     return car_data, False
 
-# --- 5. MAIN UI ---
+# MAIN UI
 
-# Display Logo and New Title
+# Logo and Title
 col1, col2 = st.columns([1, 4])
 with col1:
     if os.path.exists(LOGO_PATH):
         st.image(LOGO_PATH, width=224)
     else:
-        st.write("🚗") # Fallback icon
+        st.write("🚗") # Placeholder
 with col2:
-    # Use custom HTML for tighter spacing between logo and title
     st.markdown("""
         <h1 style='margin-bottom: 0px; padding-top: 10px;'>Otosearch</h1>
         <p style='margin-top: 0px; color: gray;'>AI-Powered Car Recognition</p>
     """, unsafe_allow_html=True)
 
-st.write("---") # Horizontal line separator
+st.write("---")
 st.write("Upload a car photo to identify its Make, Model, and Year.")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png", "webp"])
