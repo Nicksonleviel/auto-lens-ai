@@ -26,16 +26,23 @@ st.set_page_config(
 # FIREBASE SETUP 
 @st.cache_resource
 def initialize_firebase():
-    if not os.path.exists(FIREBASE_KEY_PATH):
-        st.warning(f"⚠️ 'serviceAccountKey.json' not found. Spec     s will not be fetched from DB.")
-        return None
     try:
         if not firebase_admin._apps:
-            cred = credentials.Certificate(FIREBASE_KEY_PATH)
-            firebase_admin.initialize_app(cred)
+            if "firebase" in st.secrets:
+                cred = credentials.Certificate(dict(st.secrets["firebase"]))
+                firebase_admin.initialize_app(cred)
+            
+            elif os.path.exists(FIREBASE_KEY_PATH):
+                cred = credentials.Certificate(FIREBASE_KEY_PATH)
+                firebase_admin.initialize_app(cred)
+            
+            else:
+                st.warning("No Firebase credentials found (Secrets or Local File). Specs will be skipped.")
+                return None
+
         return firestore.client()
     except Exception as e:
-        st.error(f"❌ Error connecting to Firebase: {e}")
+        st.error(f"Error connecting to Firebase: {e}")
         return None
 
 db = initialize_firebase()
