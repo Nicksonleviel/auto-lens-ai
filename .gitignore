@@ -21,4 +21,4 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
-api/serviceAccountKey.json
+serviceAccountKey.json
