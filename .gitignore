@@ -22,3 +22,4 @@ yarn-error.log*
 Thumbs.db
 
 serviceAccountKey.json
+api/serviceAccountKey.json
