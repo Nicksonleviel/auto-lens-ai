@@ -243,7 +243,3 @@ If you encounter any issues or have questions:
 - Contact via GitHub
 
 ---
-
-<div align="center">
-  Made with ❤️ and AI
-</div>
